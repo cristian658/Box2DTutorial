@@ -77,6 +77,7 @@ public class LoadingScreen implements Screen {
     public void show() {
         stateTime = 0f;
         titleImage = new Image(title);
+        copyrightImage = new Image(copyright);
 
 
         table = new Table();
