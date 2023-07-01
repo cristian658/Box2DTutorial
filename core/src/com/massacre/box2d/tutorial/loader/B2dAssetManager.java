@@ -4,7 +4,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.SkinLoader;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class B2dAssetManager {
@@ -27,8 +27,10 @@ public class B2dAssetManager {
 
 
     public void queueAddImages(){
-        manager.load(playerImage, Texture.class);
-        manager.load(enemyImage, Texture.class);
+        manager.load(gameImages, TextureAtlas.class);
+    }
+    public void queueAddLoadingImages(){
+        manager.load(loadingImages, TextureAtlas.class);
     }
 
     public void queueAddSounds(){
@@ -43,5 +45,11 @@ public class B2dAssetManager {
     public void queueAddSkin(){
         SkinLoader.SkinParameter params = new SkinLoader.SkinParameter("skin/glassy-ui.atlas");
         manager.load(skin, Skin.class, params);
+    }
+
+    public void queueAddFonts(){
+    }
+
+    public void queueAddParticleEffects(){
     }
 }

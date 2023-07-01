@@ -3,12 +3,14 @@ package com.massacre.box2d.tutorial.views;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.massacre.box2d.tutorial.Box2DTutorial;
 
@@ -19,6 +21,9 @@ public class MenuScreen implements Screen {
     private Stage stage;
 
     private Skin skin;
+    private TextureAtlas atlas;
+    private TextureAtlas.AtlasRegion background;
+
 
     public MenuScreen(Box2DTutorial box2DTutorial) {
         this.parent = box2DTutorial;
@@ -26,6 +31,8 @@ public class MenuScreen implements Screen {
         parent.assMan.queueAddSkin();  //new
         parent.assMan.manager.finishLoading(); // new
         skin = parent.assMan.manager.get("skin/glassy-ui.json"); // new
+        atlas = parent.assMan.manager.get("images/loading.atlas");
+        background = atlas.findRegion("flamebackground");
         Gdx.input.setInputProcessor(stage);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
@@ -46,6 +53,7 @@ public class MenuScreen implements Screen {
         table.add(preferences).fillX().uniformX();
         table.row();
         table.add(exit).fillX().uniformX();
+        table.setBackground(new TiledDrawable(background));
 
 
         exit.addListener(new ChangeListener() {

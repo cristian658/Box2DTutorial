@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.massacre.box2d.tutorial.B2dModel;
@@ -24,9 +25,10 @@ public class MainScreen implements Screen {
 
     private KeyboardController controller;
 
-    private Texture playerTex;
+    private TextureAtlas.AtlasRegion playerTex;
 
     private SpriteBatch sb;
+    private TextureAtlas atlas;
 
 
 
@@ -42,7 +44,8 @@ public class MainScreen implements Screen {
         // tells the asset manager to load the images and wait until finsihed loading.
         parent.assMan.manager.finishLoading();
         // gets the images as a texture
-        playerTex = parent.assMan.manager.get("images/player.png");
+        atlas = parent.assMan.manager.get("images/game.atlas"); // new
+        playerTex = atlas.findRegion("player"); //parent.assMan.manager.get("images/player.png");
         sb = new SpriteBatch();
         sb.setProjectionMatrix(cam.combined);
     }
